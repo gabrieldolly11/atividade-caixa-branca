@@ -1,0 +1,34 @@
+digraph CFG {
+graph [rankdir=TB, bgcolor="white", pad=0.25, nodesep=0.4, ranksep=0.45, labelloc=t, fontsize=18, fontname="DejaVu Sans", label="consultarQuantidade | N=12 E=17 V(G)=7"];
+node [shape=box, style="rounded,filled", fillcolor="#edf3fa", color="#385574", fontname="DejaVu Sans", fontsize=11];
+edge [fontname="DejaVu Sans", fontsize=10, color="#385574"];
+1 [label="1. Entrada", shape=oval, fillcolor="#e7f4e9"];
+2 [label="2. quantidade = 0", shape=box, fillcolor="#edf3fa"];
+3 [label="3. try: abrir BufferedReader (L13)", shape=box, fillcolor="#edf3fa"];
+4 [label="4. readLine() != null? (L15)", shape=diamond, fillcolor="#edf3fa"];
+5 [label="5. split(\";\") (L16)", shape=box, fillcolor="#edf3fa"];
+6 [label="6. colunas[0].equals(codigo)? (L17)", shape=diamond, fillcolor="#edf3fa"];
+7 [label="7. parseInt(colunas[1]) (L18)", shape=box, fillcolor="#edf3fa"];
+8 [label="8. break (L19)", shape=box, fillcolor="#edf3fa"];
+9 [label="9. catch IOException (L22–24)", shape=box, fillcolor="#fff0de"];
+10 [label="10. return quantidade (L25)", shape=box, fillcolor="#edf3fa"];
+11 [label="11. Exceção não capturada", shape=box, fillcolor="#fff0de"];
+12 [label="12. Saída única", shape=oval, fillcolor="#e7f4e9"];
+1 -> 2 [label=""];
+2 -> 3 [label=""];
+3 -> 4 [label="OK"];
+3 -> 9 [label="IOException", color="#ad4a36", style=dashed];
+4 -> 5 [label="sim"];
+4 -> 10 [label="não / EOF"];
+4 -> 9 [label="IOException", color="#ad4a36", style=dashed];
+5 -> 6 [label=""];
+6 -> 7 [label="sim"];
+6 -> 4 [label="não"];
+6 -> 11 [label="AIOOBE", color="#ad4a36", style=dashed];
+7 -> 8 [label="OK"];
+7 -> 11 [label="AIOOBE / NFE", color="#ad4a36", style=dashed];
+8 -> 10 [label=""];
+9 -> 10 [label=""];
+10 -> 12 [label=""];
+11 -> 12 [label=""];
+}

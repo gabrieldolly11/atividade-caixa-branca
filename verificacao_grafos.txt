@@ -1,0 +1,2 @@
+consultarQuantidade: N=12, E=17, P=1, V=7, posto GF(2)=7
+registrarSaida: N=11, E=14, P=1, V=5, posto GF(2)=5

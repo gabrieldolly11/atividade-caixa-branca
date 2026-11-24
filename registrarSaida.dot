@@ -1,0 +1,30 @@
+digraph CFG {
+graph [rankdir=TB, bgcolor="white", pad=0.25, nodesep=0.4, ranksep=0.45, labelloc=t, fontsize=18, fontname="DejaVu Sans", label="registrarSaida | N=11 E=14 V(G)=5"];
+node [shape=box, style="rounded,filled", fillcolor="#edf3fa", color="#385574", fontname="DejaVu Sans", fontsize=11];
+edge [fontname="DejaVu Sans", fontsize=10, color="#385574"];
+1 [label="1. Entrada", shape=oval, fillcolor="#e7f4e9"];
+2 [label="2. consultarQuantidade(codigo) (L29)", shape=box, fillcolor="#edf3fa"];
+3 [label="3. quantidade <= disponivel? (L30)", shape=diamond, fillcolor="#edf3fa"];
+4 [label="4. try: abrir FileWriter (L32)", shape=box, fillcolor="#edf3fa"];
+5 [label="5. write(...) (L33)", shape=box, fillcolor="#edf3fa"];
+6 [label="6. ultimaMovimentacao = codigo (L34)", shape=box, fillcolor="#edf3fa"];
+7 [label="7. return true (L35)", shape=box, fillcolor="#edf3fa"];
+8 [label="8. catch IOException (L36–38)", shape=box, fillcolor="#fff0de"];
+9 [label="9. return false (L40)", shape=box, fillcolor="#edf3fa"];
+10 [label="10. Exceção propagada da consulta", shape=box, fillcolor="#fff0de"];
+11 [label="11. Saída única", shape=oval, fillcolor="#e7f4e9"];
+1 -> 2 [label=""];
+2 -> 3 [label="OK"];
+2 -> 10 [label="AIOOBE / NFE", color="#ad4a36", style=dashed];
+3 -> 4 [label="sim"];
+3 -> 9 [label="não"];
+4 -> 5 [label="OK"];
+4 -> 8 [label="IOException", color="#ad4a36", style=dashed];
+5 -> 6 [label="OK"];
+5 -> 8 [label="IOException", color="#ad4a36", style=dashed];
+6 -> 7 [label=""];
+7 -> 11 [label=""];
+8 -> 9 [label=""];
+9 -> 11 [label=""];
+10 -> 11 [label=""];
+}

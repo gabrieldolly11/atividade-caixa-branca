@@ -1,0 +1,5 @@
+*.class
+__pycache__/
+estoque.csv
+movimentacoes.txt
+estoque-*.tmp

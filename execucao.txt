@@ -1,0 +1,361 @@
+openjdk version "21.0.12.1" 2026-08-18
+OpenJDK Runtime Environment (build 21.0.12.1+1-1-deb13u1-Debian)
+OpenJDK 64-Bit Server VM (build 21.0.12.1+1-1-deb13u1-Debian, mixed mode, sharing)
+
+COMPILAÇÃO original: OK (javac -encoding UTF-8 -d <classes> original/EstoqueArquivo.java testes/Executor.java)
+
+[original-T01] java -cp <classes> Executor ["Q:A"]
+pré={"estoque":"A;10\nB;0\n","log":null,"ultima":""}
+esperado={"saida":["Q=10"],"estoque":"A;10\nB;0\n","log":null,"exit":0}
+observado={"saida":["Q=10"],"estoque":"A;10\nB;0\n","log":null,"exit":0}
+stderr=''
+PASSOU
+
+[original-T02] java -cp <classes> Executor ["Q:B"]
+pré={"estoque":"A;10\nB;0\n","log":null,"ultima":""}
+esperado={"saida":["Q=0"],"estoque":"A;10\nB;0\n","log":null,"exit":0}
+observado={"saida":["Q=0"],"estoque":"A;10\nB;0\n","log":null,"exit":0}
+stderr=''
+PASSOU
+
+[original-T03] java -cp <classes> Executor ["Q:A"]
+pré={"estoque":"B;0\n","log":null,"ultima":""}
+esperado={"saida":["EX=NoSuchElementException"],"estoque":"B;0\n","log":null,"exit":0}
+observado={"saida":["Q=0"],"estoque":"B;0\n","log":null,"exit":0}
+stderr=''
+FALHOU
+
+[original-T04] java -cp <classes> Executor ["Q:A"]
+pré={"estoque":"","log":null,"ultima":""}
+esperado={"saida":["EX=NoSuchElementException"],"estoque":"","log":null,"exit":0}
+observado={"saida":["Q=0"],"estoque":"","log":null,"exit":0}
+stderr=''
+FALHOU
+
+[original-T05] java -cp <classes> Executor ["Q:A"]
+pré={"estoque":null,"log":null,"ultima":""}
+esperado={"saida":["EX=UncheckedIOException"],"estoque":null,"log":null,"exit":0}
+observado={"saida":["Q=0"],"estoque":null,"log":null,"exit":0}
+stderr=''
+FALHOU
+
+[original-T06] java -cp <classes> Executor ["Q:A"]
+pré={"estoque":";\n","log":null,"ultima":""}
+esperado={"saida":["EX=UncheckedIOException"],"estoque":";\n","log":null,"exit":0}
+observado={"saida":["EX=ArrayIndexOutOfBoundsException"],"estoque":";\n","log":null,"exit":0}
+stderr=''
+FALHOU
+
+[original-T07] java -cp <classes> Executor ["Q:A"]
+pré={"estoque":"A\n","log":null,"ultima":""}
+esperado={"saida":["EX=UncheckedIOException"],"estoque":"A\n","log":null,"exit":0}
+observado={"saida":["EX=ArrayIndexOutOfBoundsException"],"estoque":"A\n","log":null,"exit":0}
+stderr=''
+FALHOU
+
+[original-T08] java -cp <classes> Executor ["Q:A"]
+pré={"estoque":"A;abc\n","log":null,"ultima":""}
+esperado={"saida":["EX=UncheckedIOException"],"estoque":"A;abc\n","log":null,"exit":0}
+observado={"saida":["EX=NumberFormatException"],"estoque":"A;abc\n","log":null,"exit":0}
+stderr=''
+FALHOU
+
+[original-T09] java -cp <classes> Executor ["Q:A"]
+pré={"estoque":"A;10\nA;5\n","log":null,"ultima":""}
+esperado={"saida":["EX=UncheckedIOException"],"estoque":"A;10\nA;5\n","log":null,"exit":0}
+observado={"saida":["Q=10"],"estoque":"A;10\nA;5\n","log":null,"exit":0}
+stderr=''
+FALHOU
+
+[original-T10] java -cp <classes> Executor ["Q:A"]
+pré={"estoque":"A;-1\n","log":null,"ultima":""}
+esperado={"saida":["EX=UncheckedIOException"],"estoque":"A;-1\n","log":null,"exit":0}
+observado={"saida":["Q=-1"],"estoque":"A;-1\n","log":null,"exit":0}
+stderr=''
+FALHOU
+
+[original-T11] java -cp <classes> Executor ["Q:<null>"]
+pré={"estoque":"A;10\nB;0\n","log":null,"ultima":""}
+esperado={"saida":["EX=IllegalArgumentException"],"estoque":"A;10\nB;0\n","log":null,"exit":0}
+observado={"saida":["Q=0"],"estoque":"A;10\nB;0\n","log":null,"exit":0}
+stderr=''
+FALHOU
+
+[original-T12] java -cp <classes> Executor ["R:A:5","U","Q:A"]
+pré={"estoque":"A;10\nB;0\n","log":null,"ultima":""}
+esperado={"saida":["R=true","U=A","Q=5"],"estoque":"A;5\nB;0\n","log":"A;5\n","exit":0}
+observado={"saida":["R=true","U=A","Q=10"],"estoque":"A;10\nB;0\n","log":"","exit":0}
+stderr=''
+FALHOU
+
+[original-T13] java -cp <classes> Executor ["R:A:10","Q:A"]
+pré={"estoque":"A;10\nB;0\n","log":null,"ultima":""}
+esperado={"saida":["R=true","Q=0"],"estoque":"A;0\nB;0\n","log":"A;10\n","exit":0}
+observado={"saida":["R=true","Q=10"],"estoque":"A;10\nB;0\n","log":"","exit":0}
+stderr=''
+FALHOU
+
+[original-T14] java -cp <classes> Executor ["R:A:11","U"]
+pré={"estoque":"A;10\nB;0\n","log":null,"ultima":""}
+esperado={"saida":["R=false","U="],"estoque":"A;10\nB;0\n","log":null,"exit":0}
+observado={"saida":["R=false","U="],"estoque":"A;10\nB;0\n","log":null,"exit":0}
+stderr=''
+PASSOU
+
+[original-T15] java -cp <classes> Executor ["R:A:0","U"]
+pré={"estoque":"A;10\nB;0\n","log":null,"ultima":""}
+esperado={"saida":["EX=IllegalArgumentException","U="],"estoque":"A;10\nB;0\n","log":null,"exit":0}
+observado={"saida":["R=true","U=A"],"estoque":"A;10\nB;0\n","log":"","exit":0}
+stderr=''
+FALHOU
+
+[original-T16] java -cp <classes> Executor ["R:A:-5","U"]
+pré={"estoque":"A;10\nB;0\n","log":null,"ultima":""}
+esperado={"saida":["EX=IllegalArgumentException","U="],"estoque":"A;10\nB;0\n","log":null,"exit":0}
+observado={"saida":["R=true","U=A"],"estoque":"A;10\nB;0\n","log":"","exit":0}
+stderr=''
+FALHOU
+
+[original-T17] java -cp <classes> Executor ["R:A:8","R:A:8","Q:A"]
+pré={"estoque":"A;10\nB;0\n","log":null,"ultima":""}
+esperado={"saida":["R=true","R=false","Q=2"],"estoque":"A;2\nB;0\n","log":"A;8\n","exit":0}
+observado={"saida":["R=true","R=true","Q=10"],"estoque":"A;10\nB;0\n","log":"","exit":0}
+stderr=''
+FALHOU
+
+[original-T18] java -cp <classes> Executor ["R:A:1","U"]
+pré={"estoque":"A;10\nB;0\n","log":"<DIR>","ultima":""}
+esperado={"saida":["EX=UncheckedIOException","U="],"estoque":"A;10\nB;0\n","log":"<DIR>","exit":0}
+observado={"saida":["R=false","U="],"estoque":"A;10\nB;0\n","log":"<DIR>","exit":0}
+stderr=''
+FALHOU
+
+[original-T19] java -cp <classes> Executor ["R:A:1"]
+pré={"estoque":"A;x\n","log":null,"ultima":""}
+esperado={"saida":["EX=UncheckedIOException"],"estoque":"A;x\n","log":null,"exit":0}
+observado={"saida":["EX=NumberFormatException"],"estoque":"A;x\n","log":null,"exit":0}
+stderr=''
+FALHOU
+
+[original-T20] java -cp <classes> Executor ["R:Z:1"]
+pré={"estoque":"A;10\nB;0\n","log":null,"ultima":""}
+esperado={"saida":["R=false"],"estoque":"A;10\nB;0\n","log":null,"exit":0}
+observado={"saida":["R=false"],"estoque":"A;10\nB;0\n","log":null,"exit":0}
+stderr=''
+PASSOU
+
+[original-T21] java -cp <classes> Executor ["R:Z:0"]
+pré={"estoque":"A;10\nB;0\n","log":null,"ultima":""}
+esperado={"saida":["EX=IllegalArgumentException"],"estoque":"A;10\nB;0\n","log":null,"exit":0}
+observado={"saida":["R=true"],"estoque":"A;10\nB;0\n","log":"","exit":0}
+stderr=''
+FALHOU
+
+[original-T22] java -cp <classes> Executor ["R:A:1"]
+pré={"estoque":null,"log":null,"ultima":""}
+esperado={"saida":["EX=UncheckedIOException"],"estoque":null,"log":null,"exit":0}
+observado={"saida":["R=false"],"estoque":null,"log":null,"exit":0}
+stderr=''
+FALHOU
+
+[original-T23] java -cp <classes> Executor ["R:A:1","R:A:2","U","Q:A"]
+pré={"estoque":"A;10\nB;0\n","log":"B;2\n","ultima":""}
+esperado={"saida":["R=true","R=true","U=A","Q=7"],"estoque":"A;7\nB;0\n","log":"B;2\nA;1\nA;2\n","exit":0}
+observado={"saida":["R=true","R=true","U=A","Q=10"],"estoque":"A;10\nB;0\n","log":"B;2\n","exit":0}
+stderr=''
+FALHOU
+
+[original-T24] java -cp <classes> Executor ["R:BAD;CODE:1"]
+pré={"estoque":"BAD:CODE;10\n","log":null,"ultima":""}
+esperado={"saida":["EX=IllegalArgumentException"],"estoque":"BAD:CODE;10\n","log":null,"exit":0}
+observado={"saida":["R=false"],"estoque":"BAD:CODE;10\n","log":null,"exit":0}
+stderr=''
+FALHOU
+
+[original-T25] java -cp <classes> Executor ["Q:A"]
+pré={"estoque":"A;10;extra\n","log":null,"ultima":""}
+esperado={"saida":["EX=UncheckedIOException"],"estoque":"A;10;extra\n","log":null,"exit":0}
+observado={"saida":["Q=10"],"estoque":"A;10;extra\n","log":null,"exit":0}
+stderr=''
+FALHOU
+
+COMPILAÇÃO revisado: OK (javac -encoding UTF-8 -d <classes> revisado/EstoqueArquivo.java testes/Executor.java)
+
+[revisado-T01] java -cp <classes> Executor ["Q:A"]
+pré={"estoque":"A;10\nB;0\n","log":null,"ultima":""}
+esperado={"saida":["Q=10"],"estoque":"A;10\nB;0\n","log":null,"exit":0}
+observado={"saida":["Q=10"],"estoque":"A;10\nB;0\n","log":null,"exit":0}
+stderr=''
+PASSOU
+
+[revisado-T02] java -cp <classes> Executor ["Q:B"]
+pré={"estoque":"A;10\nB;0\n","log":null,"ultima":""}
+esperado={"saida":["Q=0"],"estoque":"A;10\nB;0\n","log":null,"exit":0}
+observado={"saida":["Q=0"],"estoque":"A;10\nB;0\n","log":null,"exit":0}
+stderr=''
+PASSOU
+
+[revisado-T03] java -cp <classes> Executor ["Q:A"]
+pré={"estoque":"B;0\n","log":null,"ultima":""}
+esperado={"saida":["EX=NoSuchElementException"],"estoque":"B;0\n","log":null,"exit":0}
+observado={"saida":["EX=NoSuchElementException"],"estoque":"B;0\n","log":null,"exit":0}
+stderr=''
+PASSOU
+
+[revisado-T04] java -cp <classes> Executor ["Q:A"]
+pré={"estoque":"","log":null,"ultima":""}
+esperado={"saida":["EX=NoSuchElementException"],"estoque":"","log":null,"exit":0}
+observado={"saida":["EX=NoSuchElementException"],"estoque":"","log":null,"exit":0}
+stderr=''
+PASSOU
+
+[revisado-T05] java -cp <classes> Executor ["Q:A"]
+pré={"estoque":null,"log":null,"ultima":""}
+esperado={"saida":["EX=UncheckedIOException"],"estoque":null,"log":null,"exit":0}
+observado={"saida":["EX=UncheckedIOException"],"estoque":null,"log":null,"exit":0}
+stderr=''
+PASSOU
+
+[revisado-T06] java -cp <classes> Executor ["Q:A"]
+pré={"estoque":";\n","log":null,"ultima":""}
+esperado={"saida":["EX=UncheckedIOException"],"estoque":";\n","log":null,"exit":0}
+observado={"saida":["EX=UncheckedIOException"],"estoque":";\n","log":null,"exit":0}
+stderr=''
+PASSOU
+
+[revisado-T07] java -cp <classes> Executor ["Q:A"]
+pré={"estoque":"A\n","log":null,"ultima":""}
+esperado={"saida":["EX=UncheckedIOException"],"estoque":"A\n","log":null,"exit":0}
+observado={"saida":["EX=UncheckedIOException"],"estoque":"A\n","log":null,"exit":0}
+stderr=''
+PASSOU
+
+[revisado-T08] java -cp <classes> Executor ["Q:A"]
+pré={"estoque":"A;abc\n","log":null,"ultima":""}
+esperado={"saida":["EX=UncheckedIOException"],"estoque":"A;abc\n","log":null,"exit":0}
+observado={"saida":["EX=UncheckedIOException"],"estoque":"A;abc\n","log":null,"exit":0}
+stderr=''
+PASSOU
+
+[revisado-T09] java -cp <classes> Executor ["Q:A"]
+pré={"estoque":"A;10\nA;5\n","log":null,"ultima":""}
+esperado={"saida":["EX=UncheckedIOException"],"estoque":"A;10\nA;5\n","log":null,"exit":0}
+observado={"saida":["EX=UncheckedIOException"],"estoque":"A;10\nA;5\n","log":null,"exit":0}
+stderr=''
+PASSOU
+
+[revisado-T10] java -cp <classes> Executor ["Q:A"]
+pré={"estoque":"A;-1\n","log":null,"ultima":""}
+esperado={"saida":["EX=UncheckedIOException"],"estoque":"A;-1\n","log":null,"exit":0}
+observado={"saida":["EX=UncheckedIOException"],"estoque":"A;-1\n","log":null,"exit":0}
+stderr=''
+PASSOU
+
+[revisado-T11] java -cp <classes> Executor ["Q:<null>"]
+pré={"estoque":"A;10\nB;0\n","log":null,"ultima":""}
+esperado={"saida":["EX=IllegalArgumentException"],"estoque":"A;10\nB;0\n","log":null,"exit":0}
+observado={"saida":["EX=IllegalArgumentException"],"estoque":"A;10\nB;0\n","log":null,"exit":0}
+stderr=''
+PASSOU
+
+[revisado-T12] java -cp <classes> Executor ["R:A:5","U","Q:A"]
+pré={"estoque":"A;10\nB;0\n","log":null,"ultima":""}
+esperado={"saida":["R=true","U=A","Q=5"],"estoque":"A;5\nB;0\n","log":"A;5\n","exit":0}
+observado={"saida":["R=true","U=A","Q=5"],"estoque":"A;5\nB;0\n","log":"A;5\n","exit":0}
+stderr=''
+PASSOU
+
+[revisado-T13] java -cp <classes> Executor ["R:A:10","Q:A"]
+pré={"estoque":"A;10\nB;0\n","log":null,"ultima":""}
+esperado={"saida":["R=true","Q=0"],"estoque":"A;0\nB;0\n","log":"A;10\n","exit":0}
+observado={"saida":["R=true","Q=0"],"estoque":"A;0\nB;0\n","log":"A;10\n","exit":0}
+stderr=''
+PASSOU
+
+[revisado-T14] java -cp <classes> Executor ["R:A:11","U"]
+pré={"estoque":"A;10\nB;0\n","log":null,"ultima":""}
+esperado={"saida":["R=false","U="],"estoque":"A;10\nB;0\n","log":null,"exit":0}
+observado={"saida":["R=false","U="],"estoque":"A;10\nB;0\n","log":null,"exit":0}
+stderr=''
+PASSOU
+
+[revisado-T15] java -cp <classes> Executor ["R:A:0","U"]
+pré={"estoque":"A;10\nB;0\n","log":null,"ultima":""}
+esperado={"saida":["EX=IllegalArgumentException","U="],"estoque":"A;10\nB;0\n","log":null,"exit":0}
+observado={"saida":["EX=IllegalArgumentException","U="],"estoque":"A;10\nB;0\n","log":null,"exit":0}
+stderr=''
+PASSOU
+
+[revisado-T16] java -cp <classes> Executor ["R:A:-5","U"]
+pré={"estoque":"A;10\nB;0\n","log":null,"ultima":""}
+esperado={"saida":["EX=IllegalArgumentException","U="],"estoque":"A;10\nB;0\n","log":null,"exit":0}
+observado={"saida":["EX=IllegalArgumentException","U="],"estoque":"A;10\nB;0\n","log":null,"exit":0}
+stderr=''
+PASSOU
+
+[revisado-T17] java -cp <classes> Executor ["R:A:8","R:A:8","Q:A"]
+pré={"estoque":"A;10\nB;0\n","log":null,"ultima":""}
+esperado={"saida":["R=true","R=false","Q=2"],"estoque":"A;2\nB;0\n","log":"A;8\n","exit":0}
+observado={"saida":["R=true","R=false","Q=2"],"estoque":"A;2\nB;0\n","log":"A;8\n","exit":0}
+stderr=''
+PASSOU
+
+[revisado-T18] java -cp <classes> Executor ["R:A:1","U"]
+pré={"estoque":"A;10\nB;0\n","log":"<DIR>","ultima":""}
+esperado={"saida":["EX=UncheckedIOException","U="],"estoque":"A;10\nB;0\n","log":"<DIR>","exit":0}
+observado={"saida":["EX=UncheckedIOException","U="],"estoque":"A;10\nB;0\n","log":"<DIR>","exit":0}
+stderr=''
+PASSOU
+
+[revisado-T19] java -cp <classes> Executor ["R:A:1"]
+pré={"estoque":"A;x\n","log":null,"ultima":""}
+esperado={"saida":["EX=UncheckedIOException"],"estoque":"A;x\n","log":null,"exit":0}
+observado={"saida":["EX=UncheckedIOException"],"estoque":"A;x\n","log":null,"exit":0}
+stderr=''
+PASSOU
+
+[revisado-T20] java -cp <classes> Executor ["R:Z:1"]
+pré={"estoque":"A;10\nB;0\n","log":null,"ultima":""}
+esperado={"saida":["R=false"],"estoque":"A;10\nB;0\n","log":null,"exit":0}
+observado={"saida":["R=false"],"estoque":"A;10\nB;0\n","log":null,"exit":0}
+stderr=''
+PASSOU
+
+[revisado-T21] java -cp <classes> Executor ["R:Z:0"]
+pré={"estoque":"A;10\nB;0\n","log":null,"ultima":""}
+esperado={"saida":["EX=IllegalArgumentException"],"estoque":"A;10\nB;0\n","log":null,"exit":0}
+observado={"saida":["EX=IllegalArgumentException"],"estoque":"A;10\nB;0\n","log":null,"exit":0}
+stderr=''
+PASSOU
+
+[revisado-T22] java -cp <classes> Executor ["R:A:1"]
+pré={"estoque":null,"log":null,"ultima":""}
+esperado={"saida":["EX=UncheckedIOException"],"estoque":null,"log":null,"exit":0}
+observado={"saida":["EX=UncheckedIOException"],"estoque":null,"log":null,"exit":0}
+stderr=''
+PASSOU
+
+[revisado-T23] java -cp <classes> Executor ["R:A:1","R:A:2","U","Q:A"]
+pré={"estoque":"A;10\nB;0\n","log":"B;2\n","ultima":""}
+esperado={"saida":["R=true","R=true","U=A","Q=7"],"estoque":"A;7\nB;0\n","log":"B;2\nA;1\nA;2\n","exit":0}
+observado={"saida":["R=true","R=true","U=A","Q=7"],"estoque":"A;7\nB;0\n","log":"B;2\nA;1\nA;2\n","exit":0}
+stderr=''
+PASSOU
+
+[revisado-T24] java -cp <classes> Executor ["R:BAD;CODE:1"]
+pré={"estoque":"BAD:CODE;10\n","log":null,"ultima":""}
+esperado={"saida":["EX=IllegalArgumentException"],"estoque":"BAD:CODE;10\n","log":null,"exit":0}
+observado={"saida":["EX=IllegalArgumentException"],"estoque":"BAD:CODE;10\n","log":null,"exit":0}
+stderr=''
+PASSOU
+
+[revisado-T25] java -cp <classes> Executor ["Q:A"]
+pré={"estoque":"A;10;extra\n","log":null,"ultima":""}
+esperado={"saida":["EX=UncheckedIOException"],"estoque":"A;10;extra\n","log":null,"exit":0}
+observado={"saida":["EX=UncheckedIOException"],"estoque":"A;10;extra\n","log":null,"exit":0}
+stderr=''
+PASSOU
+
+RESUMO original: 4/25 passaram; 21 falharam.
+
+RESUMO revisado: 25/25 passaram; 0 falharam.
