@@ -170,6 +170,16 @@ A revisão lê e valida o arquivo inteiro, de modo que registros inválidos não
 
 Complexidade: foram calculados os valores exigidos para o legado. A revisão distribui responsabilidades entre novos métodos, adiciona verificações e fluxos de erro, portanto não é diretamente comparável apenas pelo V(G) dos dois métodos públicos. Não foi calculado um novo V(G) formal; não se afirma que houve redução. O objetivo é correção e clareza, não minimizar artificialmente decisões.
 
+### Fundamentação das decisões e alcance das evidências
+
+A classificação não decorre apenas do tipo de exceção: considera o impacto no contrato de estoque, a condição necessária para o defeito se manifestar e a possibilidade de distinguir erros de resultados normais. A15 é crítica porque T17 mostra uma violação sequencial da regra central, sem depender de concorrência: duas saídas de 8 foram aceitas com saldo 10. A06/A07 são altas porque o dado malformado interrompe a operação ou é aceito como válido (T06–T08, T19 e T25); A09 é média porque depende da existência de duplicatas (T09). A01 é baixa porque a documentação incompleta não produz, isoladamente, uma falha de execução. A planilha e o TSV apresentam a justificativa individual de cada ocorrência.
+
+- **Validação e contrato (A03, A06–A12, A14):** validar antes da leitura evita que um argumento inválido seja tratado como ausência (T11, T24). Validar o arquivo completo custa uma leitura integral, mas evita que a busca encontre um saldo e ignore registros inválidos posteriores (T09). A escolha de exceções distintas de `false` permite ao chamador separar recusa de negócio de falha operacional; T02/T03/T05 demonstram essa distinção. T24 comprova a validação do delimitador, não uma injeção consumada no legado.
+- **Recursos e persistência (A05, A13, A15, A16):** fechar recursos por `try-with-resources` garante fechamento no fluxo normal e excepcional previsto pela linguagem; não se presume que o teste funcional mede vazamento. T12 e T23 verificam os conteúdos dos arquivos, e T17 comprova o decremento em operações sucessivas. T18 verifica falha de abertura do log e preservação de saldo/estado, não o rollback após escrita parcial. A troca atômica limita a janela de CSV parcialmente escrito, mas não torna os dois arquivos uma transação única.
+- **Organização e estado (A01, A02, A04, A17, A18):** a divisão em métodos auxiliares torna explícitas as responsabilidades, e caminhos configuráveis permitem isolar testes. O estado só é alterado após persistência bem-sucedida (T12, T15, T16, T18, T23). A sincronização restringe acessos pela mesma instância; concorrência entre processos, exaustão de descritores, variação de charset e métricas de manutenção não foram testadas. Essas melhorias são sustentadas por inspeção, não por medições inventadas.
+
+A regra de decremento, a restrição de códigos ASCII e o contrato de erro foram escolhas de projeto para este exercício. Não são requisitos explícitos adicionais do enunciado. O objetivo é preservar a distinção entre fatos observados, riscos condicionais e decisões justificadas.
+
 ## 9. Limitações
 
 - A solução pressupõe acesso local exclusivo por uma instância. A sincronização não protege processos ou instâncias diferentes; caminhos simbólicos/aliases e modificações externas não são tratados como ameaça. Não é um sistema de estoque multiusuário.
